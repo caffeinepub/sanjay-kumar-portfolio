@@ -1,0 +1,177 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/assets/fonts/Satoshi.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 300 700;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 12 14 20;
+    --foreground: 220 230 255;
+    --card: 16 20 32;
+    --card-foreground: 220 230 255;
+    --popover: 16 20 32;
+    --popover-foreground: 220 230 255;
+    --primary: 0.78 0.18 196;
+    --primary-foreground: 0.05 0.01 210;
+    --secondary: 22 28 44;
+    --secondary-foreground: 200 215 255;
+    --muted: 18 24 38;
+    --muted-foreground: 120 135 170;
+    --accent: 26 32 50;
+    --accent-foreground: 180 210 255;
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 255 240 240;
+    --border: 30 40 65;
+    --input: 22 28 44;
+    --ring: 0.78 0.18 196;
+
+    /* Custom tokens */
+    --cyan: 0.78 0.18 196;
+    --cyan-dim: 0.65 0.14 196;
+    --teal: 0.72 0.16 180;
+    --electric: 0.85 0.2 160;
+    --bg-deep: 8 10 16;
+    --bg-surface: 14 18 30;
+    --bg-elevated: 20 26 42;
+    --glow-cyan: 0 200 220;
+    --text-primary: 210 225 255;
+    --text-muted: 100 120 160;
+
+    color-scheme: dark;
+  }
+}
+
+* {
+  border-color: rgb(var(--border));
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: rgb(8, 10, 16);
+  color: rgb(210, 225, 255);
+  font-family: "Satoshi", sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.82 0.2 196),
+    oklch(0.75 0.18 160),
+    oklch(0.88 0.22 140)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow border */
+.glow-border {
+  border: 1px solid oklch(0.78 0.18 196 / 0.35);
+  box-shadow: 0 0 15px oklch(0.78 0.18 196 / 0.1), inset 0 0 15px
+    oklch(0.78 0.18 196 / 0.03);
+}
+
+.glow-border:hover {
+  border-color: oklch(0.78 0.18 196 / 0.65);
+  box-shadow: 0 0 30px oklch(0.78 0.18 196 / 0.25), inset 0 0 20px
+    oklch(0.78 0.18 196 / 0.05);
+  transition: all 0.3s ease;
+}
+
+/* Skill pill glow */
+.skill-pill {
+  background: linear-gradient(135deg, rgb(14, 20, 36), rgb(18, 26, 46));
+  border: 1px solid oklch(0.78 0.18 196 / 0.3);
+  color: oklch(0.82 0.16 196);
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, oklch(0.78 0.18 196 / 0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skill-pill:hover {
+  border-color: oklch(0.78 0.18 196 / 0.7);
+  box-shadow: 0 0 20px oklch(0.78 0.18 196 / 0.3), 0 0 40px
+    oklch(0.78 0.18 196 / 0.1);
+  color: oklch(0.92 0.18 196);
+  transform: translateY(-2px);
+}
+
+.skill-pill:hover::before {
+  opacity: 1;
+}
+
+/* Noise texture overlay */
+.noise-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(8, 10, 16);
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.78 0.18 196 / 0.4);
+  border-radius: 3px;
+}
+
+/* Section spacing */
+.section-padding {
+  padding: 6rem 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 8rem 2rem;
+  }
+}
