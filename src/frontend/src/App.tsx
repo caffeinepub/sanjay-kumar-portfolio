@@ -1,5 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import {
+  Award,
   Brain,
   ChevronDown,
   Code2,
@@ -84,6 +85,11 @@ const navLinks = [
   { label: "Education", href: "#education", ocid: "nav.education.link" },
   { label: "Skills", href: "#skills", ocid: "nav.skills.link" },
   { label: "Projects", href: "#projects", ocid: "nav.projects.link" },
+  {
+    label: "Certificates",
+    href: "#certificates",
+    ocid: "nav.certificates.link",
+  },
   { label: "Contact", href: "#contact", ocid: "nav.contact.link" },
 ];
 
@@ -108,7 +114,7 @@ function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Desktop links */}
-        <ul className="hidden md:flex items-center gap-8">
+        <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.ocid}>
               <a
@@ -326,7 +332,7 @@ function HeroSection() {
 // ─── About ──────────────────────────────────────────────────────────────────
 function AboutSection() {
   const stats = [
-    { value: "2025", label: "Graduate" },
+    { value: "2025-28", label: "Graduate" },
     { value: "4+", label: "Languages" },
     { value: "1", label: "Major Project" },
     { value: "3", label: "Spoken Languages" },
@@ -379,7 +385,7 @@ function AboutSection() {
                   Sanjay Kumar
                 </h2>
                 <p className="text-sm text-[oklch(0.78_0.18_196)] font-mono mb-4">
-                  BSc IT · 2025
+                  BSc IT · 2025–2028
                 </p>
                 <p className="text-[rgb(120,135,170)] text-sm leading-relaxed">
                   Sankara College of Science and Commerce, Coimbatore
@@ -466,7 +472,7 @@ const educationData = [
     degree: "Bachelor of Science in Information Technology",
     short: "BSc IT",
     institution: "Sankara College of Science and Commerce",
-    year: "2022 – 2025",
+    year: "2025 – 2028",
     location: "Coimbatore, Tamil Nadu",
     icon: "🎓",
     highlight: "Undergraduate Degree",
@@ -748,55 +754,12 @@ function SkillsSection() {
                 </motion.span>
               ))}
             </div>
-
-            {/* Decorative code block */}
-            <div className="mt-10 p-5 rounded-xl bg-[rgb(10,14,22)] border border-[rgb(30,40,65)] font-mono text-xs">
-              <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[rgb(30,40,65)]">
-                <div className="w-3 h-3 rounded-full bg-red-500/50" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
-                <div className="w-3 h-3 rounded-full bg-green-500/50" />
-                <span className="text-[rgb(80,100,130)] ml-2 text-[10px]">
-                  sanjay.java
-                </span>
-              </div>
-              <div className="space-y-1 leading-relaxed">
-                <div>
-                  <span className="text-[oklch(0.72_0.16_230)]">
-                    public class{" "}
-                  </span>
-                  <span className="text-[oklch(0.85_0.20_160)]">
-                    SanjayKumar{" "}
-                  </span>
-                  <span className="text-[rgb(150,170,210)]">{"{"}</span>
-                </div>
-                <div className="pl-4">
-                  <span className="text-[oklch(0.72_0.16_230)]"> String </span>
-                  <span className="text-[oklch(0.78_0.18_196)]">passion</span>
-                  <span className="text-[rgb(150,170,210)]"> = </span>
-                  <span className="text-[oklch(0.82_0.20_160)]">
-                    &quot;Fake News Detection&quot;
-                  </span>
-                  <span className="text-[rgb(150,170,210)]">;</span>
-                </div>
-                <div className="pl-4">
-                  <span className="text-[oklch(0.72_0.16_230)]"> int </span>
-                  <span className="text-[oklch(0.78_0.18_196)]">gradYear</span>
-                  <span className="text-[rgb(150,170,210)]"> = </span>
-                  <span className="text-[oklch(0.85_0.22_60)]">2025</span>
-                  <span className="text-[rgb(150,170,210)]">;</span>
-                </div>
-                <div>
-                  <span className="text-[rgb(150,170,210)]">{"}"}</span>
-                </div>
-              </div>
-            </div>
           </FadeSection>
         </div>
       </div>
     </section>
   );
 }
-
 // ─── Projects ────────────────────────────────────────────────────────────────
 function ProjectsSection() {
   return (
@@ -970,6 +933,155 @@ function ProjectsSection() {
           </div>
         </div>
       </FadeSection>
+    </section>
+  );
+}
+
+// ─── Certificates ────────────────────────────────────────────────────────────
+const certificatesData = [
+  {
+    image: "/assets/uploads/IMG-20260314-WA0003-1.jpg",
+    title: "Certificate of Appreciation",
+    issuer: "Sankara College of Science & Commerce",
+    event: "IoT / Application Display — National Science Day Celebration 2026",
+    date: "28 Feb 2026",
+    color: "oklch(0.78 0.18 196)",
+    ocid: "certificates.card.1",
+  },
+  {
+    image: "/assets/uploads/IMG-20260314-WA0002-2.jpg",
+    title: "Certificate of Participation",
+    issuer: "Sri Vasavi College, Erode",
+    event:
+      "National Conference on Recent Trends in AI & Data Science (NCRTAIDS'26)",
+    date: "21 Feb 2026",
+    color: "oklch(0.82 0.20 160)",
+    ocid: "certificates.card.2",
+  },
+];
+
+function CertificatesSection() {
+  const [enlarged, setEnlarged] = useState<number | null>(null);
+
+  return (
+    <section
+      id="certificates"
+      data-ocid="certificates.section"
+      className="section-padding"
+      style={{
+        background:
+          "linear-gradient(180deg, rgb(8,10,16), rgb(10,14,22), rgb(8,10,16))",
+      }}
+    >
+      <div className="max-w-6xl mx-auto">
+        <FadeSection>
+          <div className="flex items-center gap-3 mb-12">
+            <Award size={20} className="text-[oklch(0.78_0.18_196)]" />
+            <span className="font-mono text-sm text-[oklch(0.78_0.18_196)] tracking-widest uppercase">
+              ./certificates
+            </span>
+            <div className="flex-1 h-px bg-gradient-to-r from-[oklch(0.78_0.18_196/0.4)] to-transparent" />
+          </div>
+        </FadeSection>
+
+        <div className="grid sm:grid-cols-2 gap-8">
+          {certificatesData.map((cert, i) => (
+            <FadeSection key={cert.ocid} delay={i * 0.15}>
+              <motion.div
+                data-ocid={cert.ocid}
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                className="glow-border rounded-2xl bg-[rgb(14,18,30)] overflow-hidden group cursor-pointer"
+                onClick={() => setEnlarged(i)}
+              >
+                {/* Certificate image */}
+                <div
+                  className="relative overflow-hidden"
+                  style={{ aspectRatio: "4/3" }}
+                >
+                  <img
+                    src={cert.image}
+                    alt={cert.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-[rgb(8,10,16)]/0 group-hover:bg-[rgb(8,10,16)]/30 transition-all duration-300 flex items-center justify-center">
+                    <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm font-mono bg-[rgb(8,10,16)]/70 px-4 py-2 rounded-full">
+                      Click to enlarge
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card info */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between gap-3 mb-2">
+                    <h3 className="font-display font-bold text-lg text-[rgb(210,225,255)] leading-tight">
+                      {cert.title}
+                    </h3>
+                    <Badge
+                      className="font-mono text-xs flex-shrink-0"
+                      style={{
+                        background: `oklch(from ${cert.color} l c h / 0.12)`,
+                        color: cert.color,
+                        borderColor: `oklch(from ${cert.color} l c h / 0.3)`,
+                      }}
+                    >
+                      {cert.date}
+                    </Badge>
+                  </div>
+                  <p
+                    className="text-sm font-mono mb-1"
+                    style={{ color: cert.color }}
+                  >
+                    {cert.issuer}
+                  </p>
+                  <p className="text-xs text-[rgb(100,120,160)] leading-relaxed">
+                    {cert.event}
+                  </p>
+                </div>
+              </motion.div>
+            </FadeSection>
+          ))}
+        </div>
+      </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {enlarged !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-[rgb(4,6,12)]/90 backdrop-blur-xl flex items-center justify-center p-6"
+            onClick={() => setEnlarged(null)}
+            data-ocid="certificates.modal"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="relative max-w-2xl w-full rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={certificatesData[enlarged].image}
+                alt={certificatesData[enlarged].title}
+                className="w-full h-auto"
+              />
+              <button
+                type="button"
+                data-ocid="certificates.close_button"
+                onClick={() => setEnlarged(null)}
+                className="absolute top-3 right-3 w-9 h-9 rounded-full bg-[rgb(8,10,16)]/80 border border-[rgb(40,55,85)] flex items-center justify-center text-[rgb(180,200,240)] hover:text-white transition-colors"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
@@ -1220,7 +1332,7 @@ function Footer() {
         <div className="font-mono text-xs text-[rgb(80,100,130)]">
           <span className="gradient-text font-bold">SANJAY KUMAR</span>
           {" · "}
-          <span>BSc IT · 2025</span>
+          <span>BSc IT · 2025–2028</span>
         </div>
         <div className="text-xs text-[rgb(80,100,130)]">
           © {year}. Built with ❤️ using{" "}
@@ -1249,6 +1361,7 @@ export default function App() {
         <EducationSection />
         <SkillsSection />
         <ProjectsSection />
+        <CertificatesSection />
         <LanguagesSection />
         <ContactSection />
       </main>
